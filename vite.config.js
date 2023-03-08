@@ -5,6 +5,7 @@ import vue from '@vitejs/plugin-vue'
 import path from 'node:path'
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/b2b-show-web/',
   plugins: [vue()],
   resolve: {
     alias: {
