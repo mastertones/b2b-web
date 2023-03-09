@@ -2,7 +2,9 @@
 import { ref } from "vue"
 import { RouterLink, RouterView } from "vue-router"
 import { NButton, NDropdown, useMessage } from "naive-ui"
-import Header from "./components/Header.vue"
+import Menu from "./components/Menu.vue"
+import Cursor from "./components/Cursor.vue"
+import Title from "./components/Title.vue"
 
 // const message = useMessage()
 const showDropdownRef = ref(false)
@@ -39,7 +41,9 @@ const handleClick = () => {
 //- n-message-provider
 //-   n-dropdown( trigger="hover" :options="options" @select="handleSelect")
 //-     n-button Hover!
-Header
+Cursor
+Menu
+Title
 //- RouterView
 </template>
 

@@ -1,14 +1,14 @@
 <script setup>
 import { defineComponent, h, ref } from "vue"
 import { NMenu, NIcon } from "naive-ui"
-
+import Cursor from "../components/Cursor.vue"
 const activeKey = ref(null)
 
 const renderIcon = (icon) => {
   return () => h(NIcon, null, { default: () => h(icon) })
 }
 
-const menuOptions = [
+const menuOptionsUp = [
   {
     // label: () =>
     //   h(
@@ -137,6 +137,9 @@ const menuOptions = [
       },
     ],
   },
+]
+
+const menuOptionsDown = [
   {
     label: "Spatial Audio",
     key: "spatial-audio",
@@ -238,5 +241,16 @@ const menuOptions = [
 </script>
 
 <template lang="pug">
-n-menu( v-model:value="activeKey" mode="horizontal" :options="menuOptions" )
+//- Cursor
+.menu
+  n-menu.cursor-hover-item( v-model:value="activeKey" mode="horizontal" :options="menuOptionsUp"  )
+  n-menu.cursor-hover-item( v-model:value="activeKey" mode="horizontal" :options="menuOptionsDown"  dropdown-placement='top-end')
+
 </template>
+
+<style lang="stylus" scoped>
+.menu
+  position fixed
+  size(,100vh)
+  flex(space-between,,column)
+</style>
