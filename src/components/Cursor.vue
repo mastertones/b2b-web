@@ -18,6 +18,9 @@ const { mouseX, mouseY } = useMousePosition()
 
 onMounted(() => {
   const hoverItems = document.querySelectorAll(".cursor-hover-item")
+
+  const title = document.querySelector(".title")
+  const slices = document.querySelectorAll(".slice")
   // gsap.defaults({ ease: "none" })
   gsap.to({}, 0.016, {
     repeat: -1,
@@ -125,11 +128,26 @@ onMounted(() => {
     })
   }
 
+  title.addEventListener("pointerenter", () => {
+    slices.forEach((slice) => {
+      slice.style.transform = "translateY(0)"
+      slice.style.opacity = 1
+    })
+  })
+
+  title.addEventListener("pointerleave", () => {
+    slices.forEach((slice) => {
+      slice.style.transform = ""
+      slice.style.opacity = 0
+    })
+  })
+
   hoverItems.forEach((item) => {
     item.addEventListener("pointerenter", handlePointerEnter)
     item.addEventListener("pointerleave", handlePointerLeave)
 
     item.addEventListener("mousemove", () => {
+      // console.log(item.classList)
       cursor.value.classList.add("grow")
       if (item.classList.contains("big")) {
         cursor.value.classList.remove("grow")
@@ -173,19 +191,19 @@ onMounted(() => {
     opacity 0
 
     .text
-      color red
+      color color_blue
       font-family sans-serif
       font-weight bold
   .cursor--small
-    color red
+    color color_blue
     font-size 2rem
   .cursor--large
     size(60px)
-    border 2px solid red
+    border 2px solid color_blue
 
 
 .grow, .grow-big
   mix-blend-mode difference
 .grow-big
-  transform scale(2)
+  transform scale(1.5)
 </style>

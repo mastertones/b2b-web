@@ -246,6 +246,9 @@ const menuOptionsDown = [
   n-menu.cursor-hover-item( v-model:value="activeKey" mode="horizontal" :options="menuOptionsUp"  )
   n-menu.cursor-hover-item( v-model:value="activeKey" mode="horizontal" :options="menuOptionsDown"  dropdown-placement='top-end')
 
+  .slices
+    - for(let i=1;i<=10;i++)
+      div(class=`slice slice-${i} cursor-hover-item`)
 </template>
 
 <style lang="stylus" scoped>
@@ -253,5 +256,37 @@ const menuOptionsDown = [
   position fixed
   size(,100vh)
   flex(space-between,,column)
-  background-color #fff  //mix-blend-mode difference 失效是因為底層要設置顏色,預設白色被視為透明
+  // background-color colorSecondary  //mix-blend-mode difference 失效是因為底層要設置顏色,預設白色被視為透明
+  .cursor-hover-item
+    color #fff
+.slices
+  overflow hidden
+  size(800px)
+  flex()
+  position absolute
+  background url("https://picsum.photos/id/"+random(10,20)+"/800") center center no-repeat
+  background-size contain
+  opacity 0.2
+  z-index -1
+  // &:hover
+  //   .slice
+  //     transform translateY(0)
+  //     opacity 1
+  .slice
+    z-index 2
+    size()
+    // border 1px solid #000
+    background url("https://picsum.photos/id/"+random(10,20)+"/800") center center no-repeat
+    background-size 800px
+    transition all 1s ease-in-out
+
+  for n in (1..10)
+    nullBase = n - 1
+    .slice-{n}
+      background-position (nullBase * -80)px 0
+      transform translateY(-10%)
+      opacity 0
+  for n in (1..5)
+    .slice-{n*2}
+      transform translateY(10%)
 </style>

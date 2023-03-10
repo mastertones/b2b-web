@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue"
 import { RouterLink, RouterView } from "vue-router"
-import { NButton, NDropdown, useMessage } from "naive-ui"
+import { NConfigProvider } from "naive-ui"
 import Menu from "./components/Menu.vue"
 import Cursor from "./components/Cursor.vue"
 import Title from "./components/Title.vue"
@@ -9,41 +9,35 @@ import Title from "./components/Title.vue"
 // const message = useMessage()
 const showDropdownRef = ref(false)
 
-const options = ref([
-  {
-    label: "Marina Bay Sands",
-    key: "Marina Bay Sands",
-    disabled: true,
-  },
-  {
-    label: "Brown's Hotel, London",
-    key: "Brown's Hotel, London",
-  },
-  {
-    label: "Atlantis Bahamas, Nassau",
-    key: "Atlantis Bahamas, Nassau",
-  },
-  {
-    label: "The Beverly Hills Hotel, Los Angeles",
-    key: "The Beverly Hills Hotel, Los Angeles",
-  },
-])
+const color_yellow = "#e3ff7b"
+const color_brown = "#D4C8BE"
+const color_green = "#00dcb4"
+const color_grey = "#f4f5f7"
+const color_blue = "#3a99ff"
+const color_purple = "#ac94fa"
+const color_black = "#262622"
+const color_red = "#f98080"
 
-const handleSelect = (key) => {
-  // message.info(String(key))
-}
-const handleClick = () => {
-  showDropdownRef.value = !showDropdownRef.value
+const themeOverrides = {
+  common: {
+    primaryColor: color_blue,
+    hoverColor: color_blue,
+  },
+  Menu: {
+    itemTextColorHoverHorizontal: color_blue,
+    // itemTextColorHover: color_grey,
+    itemTextColorChildHover: color_grey,
+    fontSize: "1rem",
+    itemHeight: "60px",
+  },
 }
 </script>
 
 <template lang="pug">
-//- n-message-provider
-//-   n-dropdown( trigger="hover" :options="options" @select="handleSelect")
-//-     n-button Hover!
-Cursor
-Menu
-Title
+n-config-provider(:theme-overrides='themeOverrides' )
+  Cursor
+  Menu
+  Title
 //- RouterView
 </template>
 

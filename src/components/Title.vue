@@ -6,10 +6,9 @@
 .title
   pos()
   transform translate(-50%,-50%)
-  color #000
+  color colorPrimary
   font-size 10rem
   line-height 10rem
   text-align center
-  // mix-blend-mode difference
-  // background-color #fff
+  text-shadow 4px 4px 12px color_black
 </style>
