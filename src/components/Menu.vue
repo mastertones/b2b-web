@@ -253,4 +253,5 @@ const menuOptionsDown = [
   position fixed
   size(,100vh)
   flex(space-between,,column)
+  background-color #fff  //mix-blend-mode difference 失效是因為底層要設置顏色,預設白色被視為透明
 </style>

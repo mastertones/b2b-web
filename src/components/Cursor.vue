@@ -13,10 +13,11 @@ const hoverEffectDuration = ref(0.3)
 let isHovered = ref(false)
 let initialCursorHeight = ref()
 const cursorRotationDuration = ref(8)
-const hoverItems = document.querySelectorAll(".cursor-hover-item")
+
 const { mouseX, mouseY } = useMousePosition()
 
 onMounted(() => {
+  const hoverItems = document.querySelectorAll(".cursor-hover-item")
   // gsap.defaults({ ease: "none" })
   gsap.to({}, 0.016, {
     repeat: -1,
@@ -78,7 +79,7 @@ onMounted(() => {
 
     gsap.to(cursorInner.value, hoverEffectDuration.value, {
       scale: 2,
-      mixBlendMode: "difference",
+
       // backgroundColor: "red",
     })
     // gsap.fromTo(
@@ -124,10 +125,22 @@ onMounted(() => {
     })
   }
 
-  const hoverItems = document.querySelectorAll(".cursor-hover-item")
   hoverItems.forEach((item) => {
     item.addEventListener("pointerenter", handlePointerEnter)
     item.addEventListener("pointerleave", handlePointerLeave)
+
+    item.addEventListener("mousemove", () => {
+      cursor.value.classList.add("grow")
+      if (item.classList.contains("big")) {
+        cursor.value.classList.remove("grow")
+        cursor.value.classList.add("grow-big")
+      }
+    })
+
+    item.addEventListener("mouseleave", () => {
+      cursor.value.classList.remove("grow")
+      cursor.value.classList.remove("grow-big")
+    })
   })
 })
 </script>
@@ -152,24 +165,27 @@ onMounted(() => {
     top 0
     transform translate(-50%,-50%)
     border-radius 50%
-    mix-blend-mode difference
     pointer-events none
     user-select none
 
   .cursor--text
     font-size 0.75rem
     opacity 0
-    color #222
 
     .text
+      color red
       font-family sans-serif
       font-weight bold
   .cursor--small
-    mix-blend-mode difference
-    // size(20px)
-    // background-color #000
+    color red
     font-size 2rem
   .cursor--large
     size(60px)
-    border 2px solid #222
+    border 2px solid red
+
+
+.grow, .grow-big
+  mix-blend-mode difference
+.grow-big
+  transform scale(2)
 </style>
