@@ -7,7 +7,6 @@ import Cursor from "./components/Cursor.vue"
 import Title from "./components/Title.vue"
 
 // const message = useMessage()
-const showDropdownRef = ref(false)
 
 const color_yellow = "#e3ff7b"
 const color_brown = "#D4C8BE"
@@ -25,7 +24,6 @@ const themeOverrides = {
   },
   Menu: {
     itemTextColorHoverHorizontal: color_blue,
-    // itemTextColorHover: color_grey,
     itemTextColorChildHover: color_grey,
     fontSize: "1rem",
     itemHeight: "60px",
