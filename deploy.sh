@@ -20,6 +20,6 @@ git commit -m 'deploy'
 # git push -f git@github.com:ZhaoHouLin/ZhaoHouLin.github.io.git master
 
 # 部署到 https://<USERNAME>.github.io/<REPO>
-git push -f https://github.com/mastertones/b2b-show-web.git master:gh-pages
+git push -f https://github.com/mastertones/b2b-web.git master:gh-pages
 
 cd -

@@ -1,5 +1,5 @@
 {
-  "name": "b2b-show-web",
+  "name": "b2b-web",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
