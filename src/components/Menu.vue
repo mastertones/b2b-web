@@ -1,6 +1,6 @@
 <script setup>
-import { defineComponent, h, ref } from "vue"
-import { NMenu, NIcon } from "naive-ui"
+import { computed, defineComponent, h, onMounted, ref } from "vue"
+import { NMenu, NIcon, NButton, NDrawer, NDrawerContent } from "naive-ui"
 import Cursor from "../components/Cursor.vue"
 const activeKey = ref(null)
 
@@ -238,14 +238,61 @@ const menuOptionsDown = [
     key: "ui/ux-design",
   },
 ]
+
+const horizontalMode = ref(true)
+
+const handleHorizontalMode = (innerWidth) => {
+  console.log(innerWidth)
+  if (innerWidth <= 1440) {
+    horizontalMode.value = false
+  } else {
+    horizontalMode.value = true
+  }
+}
+
+const active = ref(false)
+const placement = ref("")
+const activate = (place) => {
+  active.value = true
+  placement.value = place
+}
+
+onMounted(() => {
+  console.log(window.innerWidth)
+  handleHorizontalMode(window.innerWidth)
+  //通過註冊resize監聽器，實現對視窗大小的監聽
+  window.addEventListener(
+    "resize",
+    (e) => {
+      handleHorizontalMode(e.target.innerWidth)
+    },
+    false
+  )
+  //溢位resize監聽器
+  window.removeEventListener("resize", (e) => {
+    handleHorizontalMode(e.target.innerWidth)
+  })
+})
 </script>
 
 <template lang="pug">
 //- Cursor
 .menu
-  n-menu.cursor-hover-item( v-model:value="activeKey" mode="horizontal" :options="menuOptionsUp"  )
-  n-menu.cursor-hover-item( v-model:value="activeKey" mode="horizontal" :options="menuOptionsDown"  dropdown-placement='top-end')
+  n-button.hamburger.cursor-hover-item(@click="activate('left')")
+    n-icon.icon
+      svg(xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewbox='0 0 32 32' )
+        path(d='M4 6h24v2H4z' fill='currentColor')
+        path(d='M4 24h24v2H4z' fill='currentColor')
+        path(d='M4 12h24v2H4z' fill='currentColor')
+        path(d='M4 18h24v2H4z' fill='currentColor')
 
+
+  n-drawer(v-model:show="active" :width="400" :placement="placement")
+    n-drawer-content.cursor-hover-item(closable)
+      n-menu( v-model:value="activeKey" mode="vertical" :options="menuOptionsUp"  :collapsed="false" )
+  //- n-menu.cursor-hover-item.left( v-model:value="activeKey" mode="vertical" :options="menuOptionsUp"  :collapsed="false" v-else)
+  //- n-menu.cursor-hover-item.bottom( v-model:value="activeKey" mode="horizontal" :options="menuOptionsDown"  dropdown-placement='top-end' )
+  //- n-menu.cursor-hover-item.right( v-model:value="activeKey" mode="vertical" :options="menuOptionsDown"  dropdown-placement='top-end' v-else)
   .slices
     - for(let i=1;i<=10;i++)
       div(class=`slice slice-${i} cursor-hover-item`)
@@ -259,6 +306,27 @@ const menuOptionsDown = [
   background-color colorSecondary  //mix-blend-mode difference 失效是因為底層要設置顏色,預設白色被視為透明
   .cursor-hover-item
     color #fff
+  .hamburger
+    position fixed
+    left 0
+    font-size 3rem
+    margin 1rem
+    color color_blue
+    size(48px)
+    flex()
+    .n-button__content
+      border none
+      background-color none
+      flex()
+      .icon
+        svg
+        // pos()
+          flex()
+          position absolute
+          left 8px
+          top 8px
+
+
 .slices
   overflow hidden
   size(800px)
@@ -291,4 +359,7 @@ const menuOptionsDown = [
   for n in (1..5)
     .slice-{n*2}
       transform translateY(10%)
+
+
+// @media screen and (max-width: 1440px)
 </style>

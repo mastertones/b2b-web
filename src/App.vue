@@ -28,6 +28,10 @@ const themeOverrides = {
     fontSize: "1rem",
     itemHeight: "60px",
   },
+  Button: {
+    primaryColor: color_blue,
+    borderHover: "1px solid #3a99ff",
+  },
 }
 </script>
 

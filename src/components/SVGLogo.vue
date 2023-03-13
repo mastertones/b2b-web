@@ -25,4 +25,7 @@ svg
   position absolute
   size(480px,200px)
   // border 1px solid #000
+@media screen and (max-width: 768px)
+  svg
+    size(300px,200px)
 </style>
