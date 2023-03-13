@@ -264,6 +264,8 @@ const menuOptionsDown = [
   size(800px)
   flex()
   position absolute
+  top 50%
+  transform translateY(-50%)
   background url("https://picsum.photos/id/"+random(10,20)+"/800") center center no-repeat
   background-size contain
   opacity 0.2
