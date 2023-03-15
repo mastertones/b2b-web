@@ -14,7 +14,7 @@ const menuOptionsUp = [
     //   h(
     //     "a",
     //     {
-    //       href: "https://en.wikipedia.org/wiki/Hear_the_Wind_Sing",
+    //       href: "https://www.master-tones.com/",
     //       target: "_blank",
     //       rel: "noopenner noreferrer",
     //     },
@@ -57,7 +57,7 @@ const menuOptionsUp = [
       h(
         "a",
         {
-          href: "https://en.wikipedia.org/wiki/Hear_the_Wind_Sing",
+          href: "https://www.master-tones.com/",
           target: "_blank",
           rel: "noopenner noreferrer",
         },
@@ -85,7 +85,7 @@ const menuOptionsUp = [
       h(
         "a",
         {
-          href: "https://en.wikipedia.org/wiki/Hear_the_Wind_Sing",
+          href: "https://www.master-tones.com/",
           target: "_blank",
           rel: "noopenner noreferrer",
         },
@@ -229,7 +229,7 @@ const menuOptionsDown = [
       h(
         "a",
         {
-          href: "https://en.wikipedia.org/wiki/Hear_the_Wind_Sing",
+          href: "https://www.master-tones.com/",
           target: "_blank",
           rel: "noopenner noreferrer",
         },
