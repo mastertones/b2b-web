@@ -5,6 +5,7 @@ import { NConfigProvider } from "naive-ui"
 import Menu from "./components/Menu.vue"
 import Cursor from "./components/Cursor.vue"
 import Title from "./components/Title.vue"
+import Contact from "./components/Contact.vue"
 
 // const message = useMessage()
 
@@ -40,6 +41,7 @@ n-config-provider(:theme-overrides='themeOverrides' )
   Cursor
   Menu
   Title
+  Contact
 //- RouterView
 </template>
 
