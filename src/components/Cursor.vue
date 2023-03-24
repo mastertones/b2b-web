@@ -9,7 +9,7 @@ const cursorInner = ref()
 const cursorTextContainerEl = ref()
 const cursorTextEl = ref()
 
-const hoverEffectDuration = ref(0.3)
+const hoverEffectDuration = ref(0.5)
 let isHovered = ref(false)
 let initialCursorHeight = ref()
 const cursorRotationDuration = ref(8)
@@ -82,7 +82,6 @@ onMounted(() => {
 
     gsap.to(cursorInner.value, hoverEffectDuration.value, {
       scale: 2,
-
       // backgroundColor: "red",
     })
     // gsap.fromTo(
@@ -111,6 +110,11 @@ onMounted(() => {
       scale: 1.2,
       opacity: 0,
     })
+
+    gsap.to(cursor.value, hoverEffectDuration.value, {
+      mixBlendMode: "difference",
+      scale: 1.5,
+    })
   }
 
   const handlePointerLeave = () => {
@@ -123,8 +127,9 @@ onMounted(() => {
       scale: 0,
       opacity: 0,
     })
-    gsap.to(cursorInner.value, hoverEffectDuration.value, {
-      // backgroundColor: "#000",
+    gsap.to(cursor.value, hoverEffectDuration.value, {
+      mixBlendMode: "difference",
+      scale: 1,
     })
   }
 
@@ -145,20 +150,6 @@ onMounted(() => {
   hoverItems.forEach((item) => {
     item.addEventListener("pointerenter", handlePointerEnter)
     item.addEventListener("pointerleave", handlePointerLeave)
-
-    item.addEventListener("mousemove", () => {
-      // console.log(item.classList)
-      cursor.value.classList.add("grow")
-      if (item.classList.contains("big")) {
-        cursor.value.classList.remove("grow")
-        cursor.value.classList.add("grow-big")
-      }
-    })
-
-    item.addEventListener("mouseleave", () => {
-      cursor.value.classList.remove("grow")
-      cursor.value.classList.remove("grow-big")
-    })
   })
 })
 </script>
@@ -200,10 +191,4 @@ onMounted(() => {
   .cursor--large
     size(60px)
     border 2px solid color_blue
-
-
-.grow, .grow-big
-  mix-blend-mode difference
-.grow-big
-  transform scale(1.5)
 </style>
